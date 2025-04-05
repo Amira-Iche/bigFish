@@ -1,9 +1,15 @@
 import React from 'react';
 import Modal from "./Modal";
 import {useModal} from "../context/ModalContext";
+import {modalContentServicesAndSupport} from "../data/boxes";
+import BigFish from '../images/BigFish.png'
+
+
 const Header = () => {
 
     const { modalContent, openModal, closeModal } = useModal();
+
+
 
     const contactModalContent = (
         <div>
@@ -16,14 +22,16 @@ const Header = () => {
     );
 
   return <header className="py-5 flex items-center justify-between">
-      <div className="h-14 w-14 bg-blue-900 flex items-center justify-center">
-        <span className="text-white text-sm font-bold">BigFish</span>
+      <div className="h-14 w-14  flex items-center justify-center">
+        <img src={BigFish} />
       </div>
       <nav className="hidden md:flex space-x-10">
-        <a href="#" className="text-gray-700 hover:text-blue-800 font-medium">
+        <a href="/" className="text-gray-700 hover:text-blue-800 font-medium">
           Accueil
         </a>
-        <a href="#" className="text-gray-700 hover:text-blue-800 font-medium">
+        <a href="#" className="text-gray-700 hover:text-blue-800 font-medium"
+           onClick={() => openModal('HR Services & Support', modalContentServicesAndSupport)}
+        >
           Services
         </a>
         <a href="#" className="text-gray-700 hover:text-blue-800 font-medium">
@@ -36,7 +44,7 @@ const Header = () => {
         Contact
       </button>
 
-      <Modal isOpen={modalContent.isOpen} onClose={closeModal} title={"Contact"}>
+      <Modal isOpen={modalContent.isOpen} onClose={closeModal} title={modalContent.title}>
           {modalContent.content}
       </Modal>
     </header>;
